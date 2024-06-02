@@ -14,9 +14,8 @@ const Header = (props) =>
             <Link to='/repositories'><img src={Logo} alt='Logo' style={{marginLeft:"20px", marginTop:"20px"}}height={"50px"}/></Link>
             <button className='button button3'>Refresh</button>
             <nav> 
-              <Link to="/repositories" title="Repositories" onClick={() => SetActiveNav('/Repositories')} className={ActiveNav === "/Repositories" ? 'active' : ''}>Repositories</Link> 
-              <Link to="/users" title="Users" onClick={() => SetActiveNav('/Users')} className={ActiveNav === "/Users" ? 'active' : ''}>Users</Link>
-              <Link to="/facts" title="Facts" onClick={() => SetActiveNav('/Facts')} className={ActiveNav === "/Facts" ? 'active' : ''}>Facts</Link>
+              <Link to="/repositories" title="Repositories" onClick={() => SetActiveNav('Repositories')} className={ActiveNav === "Repositories" ? 'active' : ''}>Repositories</Link> 
+              <Link to="/users" title="Users" onClick={() => SetActiveNav('Users')} className={ActiveNav === "Users" ? 'active' : ''}>Users</Link>
             </nav>
     </div>)
 }
