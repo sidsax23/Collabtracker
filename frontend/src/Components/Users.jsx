@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 
 const Repositories = () => 
 {
-    const [data,setData] = useState({'heatmap_data':[]})
+    const [data,setData] = useState(null)
     const [most_active_user_total_rows,set_most_active_user_total_rows] = useState([])
     const [most_active_user_consistency_rows,set_most_active_user_consistency_rows] = useState([])
     const [most_productive_days_rows,set_most_productive_days_rows] = useState([])
@@ -93,10 +93,16 @@ const Repositories = () =>
             </AccordionDetails>
         </Accordion>
         {
-            Object.entries(data).map((card_data) => 
-            (
-                <HeatmapCard heatmap_data={card_data.heatmap_data} heatmap_dates={data.heatmap_dates} top_repositories={data.top_repositories} most_productive_days={data.most_productive_days}/>
-            ))
+            data && Object.keys(data.heatmap_data).map((user,index) => 
+                (
+                    <HeatmapCard 
+                    key={index}
+                    heatmap_data={data.heatmap_data[user]}
+                    user_name={user}
+                    heatmap_dates={data.heatmap_dates}
+                    top_repositories={data.top_repositories[user]}
+                    most_productive_days={data.most_productive_days[user]}/>
+                ))
         }   
         </div>       
     </div>

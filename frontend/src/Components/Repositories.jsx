@@ -12,7 +12,7 @@ import { Typography } from '@mui/material';
 
 const Repositories = () => 
 {
-    const [data,setData] = useState({'heatmap_data':[]})
+    const [data,setData] = useState(null)
     const [most_active_repo_rows,set_most_active_repo_rows] = useState([])
     const [least_active_repo_rows,set_least_active_repo_rows] = useState([])
 
@@ -21,7 +21,7 @@ const Repositories = () =>
         const fetch_request = async () =>
         {
             const result = await axios.get("http://localhost:8000/repo_data")
-            setData(result.data)  
+            setData(result.data) 
             //set_most_active_repo_rows(result.data)
             //set_least_active_repo_rows(result.data)
         }
@@ -67,9 +67,17 @@ const Repositories = () =>
             </AccordionDetails>
         </Accordion>
         {
-            Object.entries(data.heatmap_data).map((card_data) => 
+            data && Object.keys(data.heatmap_data).map((repo,index) => 
             (
-                <HeatmapCard heatmap_data={card_data} heatmap_dates={data.heatmap_dates}/>
+                <HeatmapCard 
+                key={index}
+                heatmap_data={data.heatmap_data[repo]}
+                repo_name={repo}
+                heatmap_dates={data.heatmap_dates}
+                branch_data={data.branch_data[repo]}
+                user_data={data.user_data[repo]}
+                file_data={data.file_data[repo]}
+                average_commits_per_day={data.average_commits_per_day[repo]}/>
             ))
         }   
         </div>       

@@ -11,36 +11,37 @@ import { Typography } from '@mui/material';
 
 const Heatmap_Card_Repo = (props) => 
 {
-    const repo_name = props.heatmap_data[0]
-    const heatmap_info = props.heatmap_data[1]
+    const repo_name = props.repo_name
+    const heatmap_info = props.heatmap_data
     const startDate = props.heatmap_dates.startDate
     const endDate = props.heatmap_dates.endDate
-    const most_active_branches_rows = props.repo_data
-    const most_active_users_rows = props.repo_data
-    const most_frequently_changed_files_rows = props.repo_data
-    const avg_commits = props.repo_data
+    const most_active_branches_rows = props.branch_data
+    const most_active_users_rows = props.user_data
+    const most_frequently_changed_files_rows = props.file_data
+    const avg_commits = props.average_commits_per_day
     
     const most_active_branches_columns = [
-        { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
         { field: 'branch__name', headerName: 'Branch Name', width: 130 },
         { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
-        { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
+        { field: 'last_commit', headerName: 'Last Commit', width:130 },
       ];
 
     const most_active_users_columns = [
-      { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
       { field: 'authors__name', headerName: 'User Name', width: 130 },
       { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
-      { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
+      { field: 'last_commit', headerName: 'Last Commit', width:130 },
     ];
     
     const most_frequently_changed_files_columns = [
-      { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
       { field: 'files__name', headerName: 'File Name', width: 130 },
       { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
-      { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
+      { field: 'last_commit', headerName: 'Last Commit', width:130 },
     ];
       
+    // Ensure each row has a unique `id` field for DataGrid
+    most_active_branches_rows.forEach((row, index) => row.id = index + 1);
+    most_active_users_rows.forEach((row, index) => row.id = index + 1);
+    most_frequently_changed_files_rows.forEach((row, index) => row.id = index + 1);
 
   return (
     <div className="card">
@@ -74,6 +75,7 @@ const Heatmap_Card_Repo = (props) =>
                       columns={most_active_branches_columns}
                       autoHeight
                       hideFooterPagination
+                      getRowId={(row) => row.id}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -83,6 +85,7 @@ const Heatmap_Card_Repo = (props) =>
                         columns={most_active_users_columns}
                         autoHeight
                         hideFooterPagination
+                        getRowId={(row) => row.id}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -92,6 +95,7 @@ const Heatmap_Card_Repo = (props) =>
                       columns={most_frequently_changed_files_columns}
                       autoHeight
                       hideFooterPagination
+                      getRowId={(row) => row.id}
                     />
                 </Grid>
                 <Grid item xs={6}>
