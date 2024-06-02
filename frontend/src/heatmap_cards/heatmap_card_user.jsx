@@ -11,24 +11,26 @@ import { Typography } from '@mui/material';
 
 const Heatmap_Card_User = (props) => 
 {
+    console.log(props)
     const user_name = props.heatmap_data[0]
     const heatmap_info = props.heatmap_data[1]
     const startDate = props.heatmap_dates.startDate
     const endDate = props.heatmap_dates.endDate
-    const most_active_repo_rows = props.user_data
-    const most_productive_days_rows = props.user_data
+    const most_active_repo_rows = props.top_repositories[1]
+    const most_productive_days_rows = props.most_productive_days[1]
+
 
     const most_active_repo_columns = [
         { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
-        { field: 'repo', headerName: 'Repo Name', width: 130 },
-        { field: 'commits', headerName: 'Total Commits', width:90, type:'number' },
+        { field: 'repository_name', headerName: 'Repo Name', width: 130 },
+        { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
         { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
       ];
 
     const most_productive_days_columns = [
       { field: 'sno', headerName: 'S. No.', width: 70 },
       { field: 'day', headerName: 'Day', width: 130 },
-      { field: 'commits', headerName: 'Total Commits', width:90, type:'number' },
+      { field: 'avg_commits', headerName: 'Average Commits', width:90, type:'number' },
     ];
       
 

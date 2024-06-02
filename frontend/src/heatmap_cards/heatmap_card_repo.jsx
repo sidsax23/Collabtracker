@@ -22,22 +22,22 @@ const Heatmap_Card_Repo = (props) =>
     
     const most_active_branches_columns = [
         { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
-        { field: 'branch', headerName: 'Branch Name', width: 130 },
-        { field: 'commits', headerName: 'Total Commits', width:90, type:'number' },
+        { field: 'branch__name', headerName: 'Branch Name', width: 130 },
+        { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
         { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
       ];
 
     const most_active_users_columns = [
       { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
-      { field: 'user', headerName: 'User Name', width: 130 },
-      { field: 'commits', headerName: 'Total Commits', width:90, type:'number' },
+      { field: 'authors__name', headerName: 'User Name', width: 130 },
+      { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
       { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
     ];
     
     const most_frequently_changed_files_columns = [
       { field: 'sno', headerName: 'S. No.', width: 70, valueGetter: (value,row) => value },
-      { field: 'file', headerName: 'File Name', width: 130 },
-      { field: 'commits', headerName: 'Total Commits', width:90, type:'number' },
+      { field: 'files__name', headerName: 'File Name', width: 130 },
+      { field: 'total_commits', headerName: 'Total Commits', width:90, type:'number' },
       { field: 'last_commit', headerName: 'Last Commit', width:130, type:'date' },
     ];
       

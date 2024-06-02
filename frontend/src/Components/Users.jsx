@@ -26,6 +26,7 @@ const Repositories = () =>
             //set_most_active_user_total_rows(result.data)
             //set_most_active_user_consistency_rows(result.data)
             //set_most_productive_days_rows(result.data)
+            console.log(result)
         }
         fetch_request();
     },[])
@@ -92,9 +93,9 @@ const Repositories = () =>
             </AccordionDetails>
         </Accordion>
         {
-            Object.entries(data.heatmap_data).map((card_data) => 
+            Object.entries(data).map((card_data) => 
             (
-                <HeatmapCard heatmap_data={card_data} heatmap_dates={data.heatmap_dates}/>
+                <HeatmapCard heatmap_data={card_data.heatmap_data} heatmap_dates={data.heatmap_dates} top_repositories={data.top_repositories} most_productive_days={data.most_productive_days}/>
             ))
         }   
         </div>       
